@@ -19,7 +19,7 @@ header{
     background-image: linear-gradient(90deg,rgb(2, 139, 243),rgb(188, 59, 59));
 }
 
-h1 {
+h1{
     background-image: linear-gradient(to right, blue, green, red,blue, green, red);   -webkit-background-clip: text;
     color: transparent;
 }
@@ -33,4 +33,82 @@ footer{
 
 footer img{
     height: 4vw;
+}
+
+main{
+    display: flex;
+    justify-content: space-around;
+    background-image: url(https://media.istockphoto.com/id/1181255320/vector/tic-tac-toe-seamless-game-pattern.jpg?s=612x612&w=0&k=20&c=ZT3EPncfitJzm9DSmvyeNLYmne4cjpoGEapQjXVuoEA=);
+}
+
+main input{
+    display: block;
+}
+
+.gif{
+    display: flex;
+    flex-direction: column;
+}
+
+.gif img{
+    height: 28vw;
+    margin-top: 3vh ;
+}
+
+.gif button{
+    width: 25vw;
+    height: 5vw;
+    border-radius: 100px;
+    background-color: aqua;
+    font-size: 2vw;
+    border-width: 0px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 2vh;
+    margin-left: 2.5vw ;
+}
+
+.player-one{
+    background-image: linear-gradient(45deg, blue, cyan);
+    
+}
+.player-two {
+    background-image: linear-gradient(45deg, orange, red);
+}
+
+.player-one, .player-two{
+    margin: 5vh;
+    border-radius: 10%;
+    padding: 5vw;
+    color: white;
+}
+
+input{
+    width: 15vw;
+    border-width: 0px;
+    height: 5vh;
+    border-radius: 10px;
+    margin-top: 3vh;
+    padding: 2vh;
+    position: relative;
+    right: 1vw;
+}
+label{
+    font-size: 2vw;
+    font-weight: bolder;
+}
+input:focus{
+    outline: none;
+}
+
+main img{
+    margin-top: 1vw;
+    height: 8vw;
+    margin-left: 2vw;
+}
+
+.player-one img:hover, .player-two img:hover{
+    transition: all .7s;
+    height: 11.2vw;
+    margin-left: 1vw;
 }
