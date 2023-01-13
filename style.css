@@ -102,7 +102,7 @@ input:focus{
 }
 
 main img{
-    margin-top: 1vw;
+    margin-top: 3vw;
     height: 8vw;
     margin-left: 2vw;
 }
@@ -111,4 +111,27 @@ main img{
     transition: all .7s;
     height: 11.2vw;
     margin-left: 1vw;
+    margin-top: 1vw;
+}
+
+.div-1,.div-2, .div-3{
+    border-radius: 10%;
+    color: white;
+    background-color: aqua;
+    margin: 3vw;
+}
+
+.div-2{
+    background-color: black;
+}
+
+.game-container{
+    display: grid;
+    gap: 5px;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.game-container > div{
+    padding: 5vw;
+    background-color: green;
 }
