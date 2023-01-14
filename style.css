@@ -80,6 +80,8 @@ main input{
     color: red;
     background-image: url(https://thumbs.dreamstime.com/z/tic-tac-toe-pattern-blue-background-chaotic-sample-74834641.jpg);
 }
+
+/* blinking start button */
 .gif button{
     animation: blink-animation 2s steps(5, start) infinite;
     -webkit-animation: blink-animation 1s steps(5, start) infinite;
@@ -96,7 +98,7 @@ main input{
       background-image: linear-gradient(135deg,rgb(2, 139, 243),rgb(188, 59, 59));
     }
   }
-
+/* stops start button blinking animation */
 .gif button:hover{
     transition: all .7s;
     background-image: linear-gradient(135deg,rgb(2, 139, 243),rgb(188, 59, 59));
