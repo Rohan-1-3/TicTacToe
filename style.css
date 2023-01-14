@@ -27,7 +27,7 @@ header h1{
 
 main h1{
     top: 7.24vw;
-    font-size: 15vh;
+    font-size: 8vh;
     transition: all .7s;
 }
 
@@ -240,9 +240,11 @@ main img{
 .game-status{
     color: rgb(255, 255, 0);
     transition: all .7s;
-    padding-top: 10vw;
+    padding-top: 13vw;
     max-height: 36.4vw;
     min-height: 35.4vw;
     max-width: 42vw;
+    min-width: 42vw;
+    text-align: center;
     background-image: url(https://thumbs.dreamstime.com/z/tic-tac-toe-pattern-blue-background-chaotic-sample-74834641.jpg);
 }
