@@ -19,9 +19,14 @@ header{
     background-image: linear-gradient(90deg,rgb(2, 139, 243),rgb(188, 59, 59));
 }
 
-h1{
+header h1{
     background-image: linear-gradient(to right, blue, green, red,blue, green, red);   -webkit-background-clip: text;
     color: transparent;
+}
+
+main h1{
+    top: 20vw;
+    font-size: 15vh;
 }
 
 footer{
@@ -39,6 +44,10 @@ main{
     display: flex;
     justify-content: space-around;
     background-image: url(https://media.istockphoto.com/id/1181255320/vector/tic-tac-toe-seamless-game-pattern.jpg?s=612x612&w=0&k=20&c=ZT3EPncfitJzm9DSmvyeNLYmne4cjpoGEapQjXVuoEA=);
+}
+
+main h2{
+    top: 37.5vw;
 }
 
 main input{
@@ -107,7 +116,7 @@ main img{
     margin-left: 2vw;
 }
 
-.player-one img:hover, .player-two img:hover{
+.player-one img:hover, .player-two img:hover, .div-1 img:hover, .div-3 img:hover{
     transition: all .7s;
     height: 11.2vw;
     margin-left: 1vw;
@@ -121,8 +130,31 @@ main img{
     margin: 3vw;
 }
 
+.div-1, .div-3{
+    width: 25vw;
+}
+
+.div-1 img, .div-3 img{
+    position: relative;
+    top: 5vw;
+    left: 6vw;
+}
+
+.div-1{
+    background-image: linear-gradient(45deg, blue, cyan);
+}
+
+.div-3{
+    background-image: linear-gradient(45deg, orange, red);
+}
+
+.div-1 h3, .div-3 h3{
+    text-align: center;
+    font-size: 3vw;
+}
+
 .div-2{
-    background-color: black;
+    background-color: transparent;
     /* background-image: url(./images/Screenshot_20230113_094743.png);
     background-repeat: no-repeat;
     background-position: 2vw;
@@ -138,8 +170,8 @@ main img{
 
 .game-container > div{
     padding: 5vw;
-    background-color: green;
-    
+    background-color: rgba(0, 90, 128, 0.642); 
+    border-radius: 50%;   
 }
 
 .outline{
@@ -147,4 +179,12 @@ main img{
     top: 7.8vw;
     left: 32vw;
     height: 30vw;
+}
+
+.noclicks{
+    pointer-events: none;
+}
+
+::placeholder{
+    color: red;
 }

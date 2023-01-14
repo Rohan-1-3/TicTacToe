@@ -5,6 +5,8 @@ const contentDiv2 = document.querySelector(".player-two");
 const contentDivGif = document.querySelector(".gif");
 const mainGameDiv = document.querySelector(".game");
 const gameTools = ["sth","ath"];
+const playerOneName = document.querySelector("#player-one-input");
+const playerTwoName = document.querySelector("#player-two-input");
 
 const mainGame= (()=>{
     const removeElements = ()=> {
@@ -24,10 +26,6 @@ const mainGame= (()=>{
     const createGameDiv = ()=>{
         const gameContainer = document.querySelector(".div-2");
         gameContainer.classList.add("game-container");
-        // const someImg = document.createElement("img")
-        // someImg.classList.add("outline");
-        // someImg.src = "./images/Screenshot_20230113_094743.png";
-        // gameContainer.appendChild(someImg)
         for(let j=1;j<=9;j+=1){
             const gameDiv = document.createElement("div");
             gameDiv.classList.add("game-item")
@@ -37,18 +35,34 @@ const mainGame= (()=>{
         }
     }
 
+    const getScoreCard = ()=>{
+        const scoreCardOne = document.querySelector(".div-1");
+        const scoreCardTwo = document.querySelector(".div-3");
+        const scoreCardOneName = document.createElement("h3");
+        const scoreCardTwoName = document.createElement("h3");
+        const scoreCardOneScore = document.createElement("h3");
+        const scoreCardTwoScore = document.createElement("h3");
+        const circleImage = document.createElement("img");
+        const crossImage = document.createElement("img");
+        circleImage.src = "./images/circel.png"
+        crossImage.src = "./images/cross.png"
+        scoreCardOneName.textContent = playerOneName.value.toUpperCase();
+        scoreCardTwoName.textContent = playerTwoName.value.toUpperCase();
+        scoreCardOneScore.textContent = `Score: `;
+        scoreCardTwoScore.textContent = `Score: `;
+        scoreCardTwo.append(scoreCardTwoName);
+        scoreCardOne.append(scoreCardOneName);
+        scoreCardTwo.append(scoreCardTwoScore);
+        scoreCardOne.append(scoreCardOneScore);
+        scoreCardTwo.append(crossImage);
+        scoreCardOne.append(circleImage);
+    }
+
     const gameWin = ()=>{
-        const gamediv1 = document.getElementsByClassName("1")[0].id;
-        const gamediv2 = document.getElementsByClassName("2")[0].id;
-        const gamediv3 = document.getElementsByClassName("3")[0].id;
-        const gamediv4 = document.getElementsByClassName("4")[0].id;
-        const gamediv5 = document.getElementsByClassName("5")[0].id;
-        const gamediv6 = document.getElementsByClassName("6")[0].id;
-        const gamediv7 = document.getElementsByClassName("7")[0].id;
-        const gamediv8 = document.getElementsByClassName("8")[0].id;
-        const gamediv9 = document.getElementsByClassName("9")[0].id;
-        const gamedivv = [gamediv1, gamediv2, gamediv3, gamediv4, gamediv5
-            , gamediv6, gamediv7, gamediv8, gamediv9]
+        const gamedivv = []
+        for(let aa = 1;aa<=9;aa+=1){
+            gamedivv.push(`${document.getElementsByClassName(`${aa}`)[0].id}`)
+        }
         const a=0;
         const b=3;
         const c=6;
@@ -60,13 +74,22 @@ const mainGame= (()=>{
             || gamedivv[a+2] === gamedivv[b+2] && gamedivv[b+2] === gamedivv[c+2]
             || gamedivv[a] === gamedivv[b+1] && gamedivv[b+1] === gamedivv[c+2]
             || gamedivv[a+2] === gamedivv[b+1] && gamedivv[b+1] === gamedivv[c]){
-            alert("win");
+            const gameStatusDisplay = document.createElement("h1");
+            gameStatusDisplay.style.position = "absolute";
+            gameStatusDisplay.textContent = `${gameTools[gameTools.length-1].toUpperCase()} Wins the game`;
+            mainGameDiv.appendChild(gameStatusDisplay);
+            mainGameDiv.classList.add("noclicks");
             return 0;
         }
         if(gameTools.length === 11){
-            alert("draw");
+            const gameStatusDisplay = document.createElement("h1");
+            gameStatusDisplay.style.position = "absolute";
+            gameStatusDisplay.textContent = "Its a draw";
+            mainGameDiv.appendChild(gameStatusDisplay);
+            mainGameDiv.classList.add("noclicks");
+            return 0;
         }
-
+        return 0;
     }
 
     const playingGameAgainO = block =>{
@@ -95,7 +118,7 @@ const mainGame= (()=>{
         const select = document.querySelectorAll(".game-item");
         select.forEach((block)=>{
             block.addEventListener("click", ()=>{
-                if(block.id !== "o" || block.id !== "x"){
+                if(block.id !== "o" && block.id !== "x"){
                     if(gameTools.length % 2 === 0){
                         playingGameAgainO(block);
                     }
@@ -107,12 +130,26 @@ const mainGame= (()=>{
         })
     }
 
-    return {removeElements, newDivCreation, createGameDiv, playingGame}
+    return {removeElements, newDivCreation, createGameDiv, playingGame, getScoreCard}
 })();
 
-startButton.addEventListener("click", ()=>{
-    mainGame.removeElements();
-    mainGame.newDivCreation();
-    mainGame.createGameDiv();
-    mainGame.playingGame();
-})
+const gameStart = ()=>{
+
+    if(playerOneName.value !== "" && playerTwoName.value !== ""){
+            mainGame.removeElements();
+            mainGame.newDivCreation();
+            mainGame.createGameDiv();
+            mainGame.playingGame();
+            mainGame.getScoreCard();
+    }
+    else{
+        playerOneName.placeholder = "Enter Both Name";
+        playerTwoName.placeholder = "Enter Both Name";
+    setInterval(()=>{
+        playerOneName.placeholder = "";
+        playerTwoName.placeholder = "";
+    },3000)
+    }
+}
+
+startButton.addEventListener("click", gameStart)
