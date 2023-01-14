@@ -26,8 +26,9 @@ header h1{
 }
 
 main h1{
-    top: 20vw;
+    top: 7.24vw;
     font-size: 15vh;
+    transition: all .7s;
 }
 
 footer{
@@ -44,7 +45,7 @@ footer img{
 main{
     display: flex;
     justify-content: space-around;
-    background-image: url(https://media.istockphoto.com/id/1181255320/vector/tic-tac-toe-seamless-game-pattern.jpg?s=612x612&w=0&k=20&c=ZT3EPncfitJzm9DSmvyeNLYmne4cjpoGEapQjXVuoEA=);
+    background-image: url(https://thumbs.dreamstime.com/z/tic-tac-toe-pattern-blue-background-chaotic-sample-74834641.jpg);
 }
 
 main h2{
@@ -66,7 +67,6 @@ main input{
 }
 
 .gif button, header button{
-    
     width: 25vw;
     height: 5vw;
     border-radius: 100px;
@@ -76,11 +76,43 @@ main input{
     cursor: pointer;
     font-weight: bold;
     margin-top: 2vh;
-    margin-left: 2.5vw ;
+    margin-left: 2.5vw;
+    color: red;
+    background-image: url(https://thumbs.dreamstime.com/z/tic-tac-toe-pattern-blue-background-chaotic-sample-74834641.jpg);
+}
+.gif button{
+    animation: blink-animation 2s steps(5, start) infinite;
+    -webkit-animation: blink-animation 1s steps(5, start) infinite;
+  }
+  @keyframes blink-animation {
+    to {
+      visibility: hidden;
+      background-image: linear-gradient(135deg,rgb(2, 139, 243),rgb(188, 59, 59));
+    }
+  }
+  @-webkit-keyframes blink-animation {
+    to {
+      visibility: hidden;
+      background-image: linear-gradient(135deg,rgb(2, 139, 243),rgb(188, 59, 59));
+    }
+  }
+
+.gif button:hover{
+    transition: all .7s;
+    background-image: linear-gradient(135deg,rgb(2, 139, 243),rgb(188, 59, 59));
+    animation: blink-animation 2s steps(5, start) 0;
+    -webkit-animation: blink-animation 1s steps(5, start) 0;
 }
 
 header button{
     visibility: hidden;
+    background-image: linear-gradient(90deg,rgb(2, 139, 243),rgb(188, 59, 59));
+    transition: all 1s;
+}
+
+header button:hover{
+    height: 6vw;
+    width: 27vw;
 }
 
 .header button{
@@ -127,7 +159,7 @@ main img{
     margin-left: 2vw;
 }
 
-.player-one img:hover, .player-two img:hover, .div-1 img:hover, .div-3 img:hover{
+.player-one img:hover, .player-two img:hover{
     transition: all .7s;
     height: 11.2vw;
     margin-left: 1vw;
@@ -147,8 +179,10 @@ main img{
 
 .div-1 img, .div-3 img{
     position: relative;
-    top: 5vw;
-    left: 6vw;
+    top: 2vw;
+    left: 3vw;
+    height: 15vw;
+    opacity: 0.4;
 }
 
 .div-1{
@@ -193,4 +227,22 @@ main img{
 
 ::placeholder{
     color: red;
+}
+
+.turn img{
+    transition: all .7s;
+    height: 20vw;
+    margin-left: 0;
+    margin-top: 1vw;
+    opacity: 1;
+}
+
+.game-status{
+    color: rgb(255, 255, 0);
+    transition: all .7s;
+    padding-top: 10vw;
+    max-height: 36.4vw;
+    min-height: 35.4vw;
+    max-width: 42vw;
+    background-image: url(https://thumbs.dreamstime.com/z/tic-tac-toe-pattern-blue-background-chaotic-sample-74834641.jpg);
 }

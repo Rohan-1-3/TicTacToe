@@ -10,6 +10,11 @@ const playerTwoName = document.querySelector("#player-two-input");
 const resetRound = document.querySelector(".reset-round");
 const resetGame = document.querySelector(".reset-game");
 const header = document.querySelector("#header");
+const circleImage = document.createElement("img");
+const crossImage = document.createElement("img");
+circleImage.src = "./images/circel.png"
+crossImage.src = "./images/cross.png"
+const gameStatusDisplay = document.createElement("h1");
 
 const mainGame= (()=>{
     const removeElements = ()=> {
@@ -43,10 +48,6 @@ const mainGame= (()=>{
         const scoreCardTwo = document.querySelector(".div-3");
         const scoreCardOneName = document.createElement("h3");
         const scoreCardTwoName = document.createElement("h3");
-        const circleImage = document.createElement("img");
-        const crossImage = document.createElement("img");
-        circleImage.src = "./images/circel.png"
-        crossImage.src = "./images/cross.png"
         scoreCardOneName.textContent = playerOneName.value.toUpperCase();
         scoreCardTwoName.textContent = playerTwoName.value.toUpperCase();
         scoreCardTwo.append(scoreCardTwoName);
@@ -65,6 +66,10 @@ const mainGame= (()=>{
         if(mainGameDiv.childElementCount === 4){
             mainGameDiv.lastChild.remove();
         }
+        const help = document.querySelector(".div-1");
+        const help2 = document.querySelector(".div-3");
+        help.classList.remove("turn");
+        help2.classList.remove("turn");
         gameTools.splice(2,gameTools.length);
         const gameContainer = document.querySelector(".div-2");
         while (gameContainer.lastElementChild) {
@@ -78,6 +83,7 @@ const mainGame= (()=>{
             gameDiv.id = j;
             gameContainer.appendChild(gameDiv);
         }
+        help.classList.add("turn");
         playingGame();
     }
 
@@ -86,7 +92,6 @@ const mainGame= (()=>{
         for(let aa = 1;aa<=9;aa+=1){
             gamedivv.push(`${document.getElementsByClassName(`${aa}`)[0].id}`)
         }
-        console.log(gamedivv);
         const a=0;
         const b=3;
         const c=6;
@@ -98,9 +103,9 @@ const mainGame= (()=>{
             || gamedivv[a+2] === gamedivv[b+2] && gamedivv[b+2] === gamedivv[c+2]
             || gamedivv[a] === gamedivv[b+1] && gamedivv[b+1] === gamedivv[c+2]
             || gamedivv[a+2] === gamedivv[b+1] && gamedivv[b+1] === gamedivv[c]){
-            const gameStatusDisplay = document.createElement("h1");
             gameStatusDisplay.style.position = "absolute";
             gameStatusDisplay.textContent = decideWinner();
+            gameStatusDisplay.classList.add("game-status");
             mainGameDiv.appendChild(gameStatusDisplay);
             mainGameDiv.classList.add("noclicks");
             return 0;
@@ -119,7 +124,7 @@ const mainGame= (()=>{
     const playingGameAgainO = block =>{
         const img = document.createElement("img");
         img.src= "./images/circel.png";
-        img.style.margin = "0"
+        img.style.margin = "0";
         block.id = "o";
         block.style.padding = "10px";
         block.appendChild(img);
@@ -142,7 +147,18 @@ const mainGame= (()=>{
         const select = document.querySelectorAll(".game-item");
         select.forEach((block)=>{
             block.addEventListener("click", ()=>{
+                const help = document.querySelector(".div-1");
+                const help2 = document.querySelector(".div-3");
                 if(block.id !== "o" && block.id !== "x"){
+                    if(help.classList[1] === "turn"){
+                        console.log(help.classList[1])
+                        help.classList.remove("turn");
+                        help2.classList.add("turn");
+                    }
+                    else if (help2.classList[1] === "turn"){
+                        help2.classList.remove("turn");
+                        help.classList.add("turn");
+                    }
                     if(gameTools.length % 2 === 0){
                         playingGameAgainO(block);
                     }
@@ -169,6 +185,8 @@ const gameStart = ()=>{
             mainGame.getScoreCard();
             resetRound.disabled = false;
             header.classList.add("header");
+            const help = document.querySelector(".div-1");
+            help.classList.add("turn")
     }
     else{
         playerOneName.placeholder = "Enter Both Name";
