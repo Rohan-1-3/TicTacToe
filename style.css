@@ -123,6 +123,10 @@ main img{
 
 .div-2{
     background-color: black;
+    /* background-image: url(./images/Screenshot_20230113_094743.png);
+    background-repeat: no-repeat;
+    background-position: 2vw;
+    background-size: 35vw; */
 }
 
 .game-container{
@@ -131,7 +135,16 @@ main img{
     grid-template-columns: 1fr 1fr 1fr;
 }
 
+
 .game-container > div{
     padding: 5vw;
     background-color: green;
+    
+}
+
+.outline{
+    position: absolute;
+    top: 7.8vw;
+    left: 32vw;
+    height: 30vw;
 }
