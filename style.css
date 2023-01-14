@@ -11,7 +11,8 @@
 }
 
 header{
-    justify-content: space-between;
+    display: flex;
+    justify-content: space-around;
     box-shadow: -5px 2px 8px red, 10px 4px 8px blue, 15px 2px 8px black;
     max-height: 100px;
     text-align: center;
@@ -64,7 +65,8 @@ main input{
     margin-top: 3vh ;
 }
 
-.gif button{
+.gif button, header button{
+    
     width: 25vw;
     height: 5vw;
     border-radius: 100px;
@@ -75,6 +77,15 @@ main input{
     font-weight: bold;
     margin-top: 2vh;
     margin-left: 2.5vw ;
+}
+
+header button{
+    visibility: hidden;
+}
+
+.header button{
+    transition: all 1s;
+    visibility: visible;
 }
 
 .player-one{
@@ -155,10 +166,6 @@ main img{
 
 .div-2{
     background-color: transparent;
-    /* background-image: url(./images/Screenshot_20230113_094743.png);
-    background-repeat: no-repeat;
-    background-position: 2vw;
-    background-size: 35vw; */
 }
 
 .game-container{
@@ -166,7 +173,6 @@ main img{
     gap: 5px;
     grid-template-columns: 1fr 1fr 1fr;
 }
-
 
 .game-container > div{
     padding: 5vw;

@@ -7,6 +7,9 @@ const mainGameDiv = document.querySelector(".game");
 const gameTools = ["sth","ath"];
 const playerOneName = document.querySelector("#player-one-input");
 const playerTwoName = document.querySelector("#player-two-input");
+const resetRound = document.querySelector(".reset-round");
+const resetGame = document.querySelector(".reset-game");
+const header = document.querySelector("#header");
 
 const mainGame= (()=>{
     const removeElements = ()=> {
@@ -59,7 +62,10 @@ const mainGame= (()=>{
     }
 
     const removePadding = ()=>{
-        mainGameDiv.lastChild.remove()
+        if(mainGameDiv.childElementCount === 4){
+            mainGameDiv.lastChild.remove();
+        }
+        gameTools.splice(2,gameTools.length);
         const gameContainer = document.querySelector(".div-2");
         while (gameContainer.lastElementChild) {
             gameContainer.removeChild(gameContainer.lastElementChild);
@@ -80,6 +86,7 @@ const mainGame= (()=>{
         for(let aa = 1;aa<=9;aa+=1){
             gamedivv.push(`${document.getElementsByClassName(`${aa}`)[0].id}`)
         }
+        console.log(gamedivv);
         const a=0;
         const b=3;
         const c=6;
@@ -96,11 +103,6 @@ const mainGame= (()=>{
             gameStatusDisplay.textContent = decideWinner();
             mainGameDiv.appendChild(gameStatusDisplay);
             mainGameDiv.classList.add("noclicks");
-            gameTools.splice(2,gameTools.length);
-            gamedivv.splice(0,gamedivv.length);
-            setTimeout(()=>{
-                removePadding()
-            },3000)
             return 0;
         }
         if(gameTools.length === 11){
@@ -109,15 +111,10 @@ const mainGame= (()=>{
             gameStatusDisplay.textContent = "Its a draw";
             mainGameDiv.appendChild(gameStatusDisplay);
             mainGameDiv.classList.add("noclicks");
-            gameTools.splice(2,gameTools.length);
-            gamedivv.splice(0,gamedivv.length);
-            setTimeout(()=>{
-                removePadding()
-            },3000)
             return 0;
         }
         return 0;
-    }
+    };
 
     const playingGameAgainO = block =>{
         const img = document.createElement("img");
@@ -157,7 +154,9 @@ const mainGame= (()=>{
         })
     }
 
-    return {removeElements, newDivCreation, createGameDiv, playingGame, getScoreCard}
+    return {removeElements, newDivCreation, 
+        createGameDiv, playingGame, 
+        getScoreCard, removePadding}
 })();
 
 const gameStart = ()=>{
@@ -168,6 +167,8 @@ const gameStart = ()=>{
             mainGame.createGameDiv();
             mainGame.playingGame();
             mainGame.getScoreCard();
+            resetRound.disabled = false;
+            header.classList.add("header");
     }
     else{
         playerOneName.placeholder = "Enter Both Name";
@@ -180,3 +181,13 @@ const gameStart = ()=>{
 }
 
 startButton.addEventListener("click", gameStart)
+
+resetGame.addEventListener("click", ()=>{
+    location.reload()
+});
+
+resetRound.addEventListener("click", ()=>{
+    mainGame.removePadding();
+})
+
+resetRound.disabled = true;
