@@ -40,22 +40,39 @@ const mainGame= (()=>{
         const scoreCardTwo = document.querySelector(".div-3");
         const scoreCardOneName = document.createElement("h3");
         const scoreCardTwoName = document.createElement("h3");
-        const scoreCardOneScore = document.createElement("h3");
-        const scoreCardTwoScore = document.createElement("h3");
         const circleImage = document.createElement("img");
         const crossImage = document.createElement("img");
         circleImage.src = "./images/circel.png"
         crossImage.src = "./images/cross.png"
         scoreCardOneName.textContent = playerOneName.value.toUpperCase();
         scoreCardTwoName.textContent = playerTwoName.value.toUpperCase();
-        scoreCardOneScore.textContent = `Score: `;
-        scoreCardTwoScore.textContent = `Score: `;
         scoreCardTwo.append(scoreCardTwoName);
         scoreCardOne.append(scoreCardOneName);
-        scoreCardTwo.append(scoreCardTwoScore);
-        scoreCardOne.append(scoreCardOneScore);
         scoreCardTwo.append(crossImage);
         scoreCardOne.append(circleImage);
+    }
+
+    const decideWinner = ()=>{
+        const winner = gameTools[gameTools.length-1];
+        return winner === "o" ?`${playerOneName.value} Wins` 
+        : `${playerTwoName.value} Wins`
+    }
+
+    const removePadding = ()=>{
+        mainGameDiv.lastChild.remove()
+        const gameContainer = document.querySelector(".div-2");
+        while (gameContainer.lastElementChild) {
+            gameContainer.removeChild(gameContainer.lastElementChild);
+          }
+        mainGameDiv.classList.remove("noclicks")
+        for(let j=1;j<=9;j+=1){
+            const gameDiv = document.createElement("div");
+            gameDiv.classList.add("game-item")
+            gameDiv.classList.add(j)
+            gameDiv.id = j;
+            gameContainer.appendChild(gameDiv);
+        }
+        playingGame();
     }
 
     const gameWin = ()=>{
@@ -76,9 +93,14 @@ const mainGame= (()=>{
             || gamedivv[a+2] === gamedivv[b+1] && gamedivv[b+1] === gamedivv[c]){
             const gameStatusDisplay = document.createElement("h1");
             gameStatusDisplay.style.position = "absolute";
-            gameStatusDisplay.textContent = `${gameTools[gameTools.length-1].toUpperCase()} Wins the game`;
+            gameStatusDisplay.textContent = decideWinner();
             mainGameDiv.appendChild(gameStatusDisplay);
             mainGameDiv.classList.add("noclicks");
+            gameTools.splice(2,gameTools.length);
+            gamedivv.splice(0,gamedivv.length);
+            setTimeout(()=>{
+                removePadding()
+            },3000)
             return 0;
         }
         if(gameTools.length === 11){
@@ -87,6 +109,11 @@ const mainGame= (()=>{
             gameStatusDisplay.textContent = "Its a draw";
             mainGameDiv.appendChild(gameStatusDisplay);
             mainGameDiv.classList.add("noclicks");
+            gameTools.splice(2,gameTools.length);
+            gamedivv.splice(0,gamedivv.length);
+            setTimeout(()=>{
+                removePadding()
+            },3000)
             return 0;
         }
         return 0;
