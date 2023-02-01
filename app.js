@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-restricted-globals */
 // defining some basic variables
 const startButton = document.querySelector(".start-game");
 const contentDiv1 = document.querySelector(".player-one");
@@ -47,6 +49,8 @@ const mainGame= (()=>{
     }
     // checking if someone has won yet or not
     const checkGameWinner = ()=>{
+        const scoreCardOne = document.querySelector(".div-1");
+        const scoreCardTwo = document.querySelector(".div-3");
         const gameDivsId = [];
         for(let aa = 1;aa<=9;aa+=1){ // takes id of each div in gameContainer and pushes in game
             gameDivsId.push(`${document.getElementsByClassName(`${aa}`)[0].id}`);
@@ -63,8 +67,10 @@ const mainGame= (()=>{
             || gameDivsId[a+2] === gameDivsId[b+2] && gameDivsId[b+2] === gameDivsId[c+2]
             || gameDivsId[a] === gameDivsId[b+1] && gameDivsId[b+1] === gameDivsId[c+2]
             || gameDivsId[a+2] === gameDivsId[b+1] && gameDivsId[b+1] === gameDivsId[c]){
-                // displaying the winner of game 
-                gameStatusDisplay.style.position = "absolute";
+                // displaying the winner of game
+                scoreCardOne.classList.remove("turn");
+                scoreCardTwo.classList.remove("turn");
+                mainGameDiv.classList.add("hide");
                 gameStatusDisplay.textContent = decideWinner();
                 gameStatusDisplay.classList.add("game-status");
                 mainGameDiv.appendChild(gameStatusDisplay);
@@ -74,8 +80,11 @@ const mainGame= (()=>{
             }
         if(gameTools.length === 11){
             // displays DRAW
-            gameStatusDisplay.style.position = "absolute";
+            scoreCardOne.classList.remove("turn");
+            scoreCardTwo.classList.remove("turn");
+            mainGameDiv.classList.add("hide");
             gameStatusDisplay.textContent = "Its a draw";
+            gameStatusDisplay.classList.add("game-status");
             mainGameDiv.appendChild(gameStatusDisplay);
             // disables events
             mainGameDiv.classList.add("noclicks");
@@ -161,6 +170,7 @@ const mainGame= (()=>{
     }
     // resets the gameContainer to the start
     const resetGameContainer = ()=>{
+        mainGameDiv.classList.remove("hide");
         if(mainGameDiv.childElementCount === 4){
             mainGameDiv.lastChild.remove(); // removing the gameStatusDisplay
         }

@@ -212,7 +212,7 @@ main img{
 
 .game-container > div{
     padding: 5vw;
-    background-color: rgba(0, 90, 128, 0.642); 
+    background-color: rgba(0, 90, 128, 0.164); 
     border-radius: 50%;   
 }
 
@@ -239,14 +239,58 @@ main img{
     opacity: 1;
 }
 
+.game.hide > div{
+    visibility: hidden;
+}
+
 .game-status{
-    color: rgb(255, 255, 0);
-    transition: all .7s;
-    padding-top: 13vw;
-    max-height: 36.4vw;
-    min-height: 35.4vw;
-    max-width: 42vw;
-    min-width: 42vw;
-    text-align: center;
-    background-image: url(https://thumbs.dreamstime.com/z/tic-tac-toe-pattern-blue-background-chaotic-sample-74834641.jpg);
+    margin-top: 10%;
+    font-size: 5vw;
+    position: absolute;
+    color: white;
+    animation: glow 1s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+    }
+    
+    to {
+      text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+    }
+  }
+
+@media screen and (max-width: 950px){
+    .gif img{
+        height: 80%;
+    }
+
+    .game input{
+        width: 100%;
+    }
+
+    .game label{
+        font-size: 4vh
+    }
+
+    .game {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1.5fr;
+    }
+
+    .gif button{
+        width: 90%;
+        height: 5vh;
+    }
+
+    #container{
+        display: grid;
+        grid-template-rows: 0.3fr 1fr 0.3fr;
+    }
+
+    .game-status{
+        font-size: 5vw;
+        margin-left: 50vw;
+    }
 }
